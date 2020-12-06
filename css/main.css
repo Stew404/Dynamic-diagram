@@ -4,6 +4,7 @@
 
 body {
    font-family: Arial;
+   overflow: hidden;
 }
 
 .main {
@@ -12,9 +13,12 @@ body {
    width: 100vw;
    height: 100vh;
 
+   
 
    align-items: center;
    justify-content: center;
+
+   position: relative;
 }
 
 .circle-block {
@@ -28,21 +32,28 @@ body {
 
 
 .flag-img {
-   margin-bottom: 20px;
+   
+   margin-bottom: 40px;
 }
 .flag-img svg {
+   width: 80px;
+   height: 100px;
    fill: #CCCCCC;
 }
 
+.opacity-none {
+   opacity: 0;
+}
+
 .percent {
-   font-size: 40px;
+   font-size: 80px;
    position: relative;
    color: #555555;
 }
 
 .percent:after {
    content:"%";
-   font-size: 20px;
+   font-size: 40px;
    color: #CCCCCC;
    position: absolute;
 
@@ -50,40 +61,40 @@ body {
 }
 
 .float {
-   font-size: 20px;
+   font-size: 40px;
 }
 
 .float:before {
    content:".";
-   font-size: 32px;
+   font-size: 64px;
 }
 
 .heading {
-   font-size: 18px;
+   font-size: 32px;
    font-weight: 600;
    color: #555555;
    margin-bottom: 3px;
 }
 
 .status {
-   font-size: 14px;
+   font-size: 28px;
    font-weight: 600;
    color: #fbd229;
 }
 
 .grey-text {
    text-align: center;
-   font-size: 9px;
+   font-size: 18px;
    color: #B7B2B2;
 }
 
 .difference {
    display: flex;
    align-items: center;
-
+   font-size: 40px;
    color: #70a74b;
 
-   margin-top: 10px;
+   margin-top: 20px;
 }
 
 .difference::before {
@@ -91,10 +102,10 @@ body {
    width: 0;
    height: 0;
    border-style: solid;
-   border-width: 0 8px 9px 8px;
+   border-width: 0 16px 18px 16px;
    border-color: transparent transparent #70a74b transparent;
 
-   margin-right: 5px;
+   margin-right: 10px;
 
 }
 
@@ -102,11 +113,33 @@ body {
 .circles {
    position: absolute;
 
+   display: flex;
+   justify-content: center;
+
    top: 50%;
    left: 50%;
    transform: translate(-50%, -35%);
-   width: 220px;
-   height: 220px;
+   width: 440px;
+   height: 440px;
+}
+
+.video-fortnite-wrapper {
+   display: none;
+
+   width: 420px;
+   height: 420px;
+   position: absolute;
+   z-index: -1;
+   border-radius: 50%;
+
+   overflow: hidden;
+}
+
+.video-fortnite {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   
 }
 
 
@@ -124,9 +157,111 @@ body {
 
 
 .get-percent {
-   margin-top: 50px;
+   width: 300px;
+   height: 40px;
+
+   padding: 5px 10px;
+   margin-top: 100px;
+
+   border: 1px solid #585858;
+   
+   border-radius: 20px;
+
+   font-size: 34px;
 }
 
 .get-percent-btn {
+
+   display: flex;
+   justify-content: center;
+
+   font-size: 26px;
+   color: #767676;
+
+   background-color: #cccccc;
+   border: none;
+   border-radius: 20px;
+
+   padding-top: 3px;
    margin-top: 5px;
+   width: 170px;
+   height: 40px;
+}
+
+.get-percent-btn:hover {
+   background-color: #767676;
+   color: #cccccc;
+
+   transition: .3s;
+}
+
+.video-gorin-wrapper {
+   display: none;
+
+   width: 100vw;
+   height: 100vh;
+
+   top: 0;
+   left: 0;
+
+   z-index: -1;
+   position: absolute;
+   
+}
+
+.video-gorin {
+   width: 100%;
+   height: 100%;
+
+   object-fit: cover;
+
+
+
+   top: 0;
+   left: 0;
+}
+
+.video-active {
+   display: block;
+}
+
+
+
+.fortnite-gradient {
+   display: none;
+
+   background: linear-gradient(-45deg, #319236, #4C51F7, #9D4DBB, #F3AF19);
+   background-size: 400% 400%;
+   animation: Gradient .5s linear infinite;
+
+   width: 100vw;
+   height: 100vh;
+
+   position: fixed;
+   top:0;
+   left:0;
+
+   opacity: .9;
+
+   overflow: hidden;
+   z-index: -1;
+}
+
+.gradient-active {
+   display: block;
+   transition: .2s;
+}
+
+@keyframes Gradient {
+   0% {
+      background-position: 0% 50%
+   }
+
+   50% {
+      background-position: 100% 50%
+   }
+
+   100% {
+      background-position: 0% 50%
+   }
 }

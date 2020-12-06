@@ -6,6 +6,12 @@ const percentInput = document.querySelector('.get-percent');
       greenCircle = document.querySelector('#green-circle');
       yellowCircle = document.querySelector('#yellow-circle');
       circleStyle = document.querySelector('.circle-style');
+      gorinWrapper = document.querySelector('.video-gorin-wrapper');
+      gorinVideo = document.querySelector('.video-gorin');
+      fortniteWrapper = document.querySelector('.video-fortnite-wrapper');
+      fortniteVideo = document.querySelector('.video-fortnite');
+      fortniteGradient = document.querySelector('.fortnite-gradient');
+      flagImg = document.querySelector('.flag-img');
 
 var circleLength = 604;
     startPositiong = circleLength;
@@ -107,15 +113,29 @@ percentInputBtn.addEventListener('click', () => {
    var percentInputValue = parseFloat(percentInput.value);
 
    if (percentInputValue < 0 || percentInputValue > 100) {
-      
-      return alert('ТЫ ЕБЛАН? Проценты бывают только от 0 до 100. ДАУН');
-   } 
-   if (!isNaN(percentInputValue)) {
+      alert('ТЫ ЕБЛАН? Проценты бывают только от 0 до 100. ДАУН');
+   }
+   else if (percentInputValue == 69) {
+      fortniteWrapper.classList.add("video-active");
+      fortniteGradient.classList.add("gradient-active");
+      flagImg.classList.add("opacity-none");
+      fortniteVideo.play();
+      fortniteVideo.addEventListener('ended', () =>{
+         fortniteWrapper.classList.remove("video-active");
+         fortniteGradient.classList.remove("gradient-active");
+         flagImg.classList.remove("opacity-none");
+      })
+   }
+   else if (!isNaN(percentInputValue)) {
       var valueInt = parseInt(percentInputValue);
           valueFloat = percentInputValue - valueInt;
           
       valueFloat = valueFloat.toFixed(1);
       valueFloat *= 10;
+
+      if (valueFloat == 10) {
+         valueFloat = 9;
+      }
 
       percent.innerHTML = valueInt + "<span class=\"float\">" + valueFloat + "</span>";
 
@@ -161,7 +181,11 @@ percentInputBtn.addEventListener('click', () => {
       
    } 
    else {
-      alert('УЧИ УРОКИ ДЕБИЛ');
+      gorinWrapper.classList.add("video-active");
+      gorinVideo.play();
+      gorinVideo.addEventListener('ended', () =>{
+         gorinWrapper.classList.remove("video-active");
+      })
    }
 
 
