@@ -106,6 +106,10 @@ function updateCircles(percent) {
 percentInputBtn.addEventListener('click', () => {
    var percentInputValue = parseFloat(percentInput.value);
 
+   if (percentInputValue < 0 || percentInputValue > 100) {
+      
+      return alert('ТЫ ЕБЛАН? Проценты бывают только от 0 до 100. ДАУН');
+   } 
    if (!isNaN(percentInputValue)) {
       var valueInt = parseInt(percentInputValue);
           valueFloat = percentInputValue - valueInt;
@@ -155,7 +159,7 @@ percentInputBtn.addEventListener('click', () => {
       
       setTimeout(updateCircles, 0, percentInputValue*0.01);
       
-   }
+   } 
    else {
       alert('УЧИ УРОКИ ДЕБИЛ');
    }
