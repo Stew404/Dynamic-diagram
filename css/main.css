@@ -95,6 +95,7 @@ body {
    color: #70a74b;
 
    margin-top: 20px;
+   margin-bottom: 100px;
 }
 
 .difference::before {
@@ -116,7 +117,7 @@ body {
 
    top: 50%;
    left: 50%;
-   transform: translate(-50%, -35%);
+   transform: translate(-50%, -45%);
    width: 440px;
    height: 440px;
 }
@@ -135,25 +136,6 @@ body {
    overflow: hidden;
 }
 
-<<<<<<< HEAD
-=======
-.video-fortnite {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-   
-}
-
-
-.svg-green {
-   opacity: .5;
-}
-
-
-
-
-
->>>>>>> rofl
 .get-percent {
    width: 300px;
    height: 40px;
@@ -263,3 +245,69 @@ body {
       background-position: 0% 50%
    }
 }
+
+/* Stats block */
+
+.stats {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.stats-block {
+   display: flex;
+   align-items: start;
+}
+
+.stats-block-heading {
+   font-size: 21px;
+   font-weight: 700;
+}
+
+.stats-block-percent {
+   display: flex;
+   flex-direction: column;
+   align-items: end;
+   margin: 0 10px;
+}
+
+.stats-block-percent-value {
+   font-size: 21px;
+   font-weight: 700;
+}
+
+.stats-block-percent-people {
+   
+   display: flex;
+   align-items: center;
+
+   color: #9999B3;
+   font-size: 21px;
+}
+
+.stats-block-visual {
+   display: flex;
+   position: relative;
+}
+
+.stats-block-visual-svg{
+   background-color: #F9F9F9;
+   border: 1px solid #ECECEC;
+   border-radius: 4px;
+}
+
+.new-percent {
+   height: 36px;
+}
+
+.stats-block-visual-difference {
+   font-size: 18px;
+   position: absolute;
+
+   top: 50%;
+   right: 7px;
+
+   transform: translateY(-50%);
+}
+
+
