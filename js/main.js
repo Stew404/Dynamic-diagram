@@ -105,20 +105,11 @@ function updateCircles(percent) {
 
 percentInputBtn.addEventListener('click', () => {
    var percentInputValue = parseFloat(percentInput.value);
-<<<<<<< HEAD
 
    if (percentInputValue < 0 || percentInputValue > 100) {
       
       return alert('ТЫ ЕБЛАН? Проценты бывают только от 0 до 100. ДАУН');
    } 
-=======
-   
-   if (percentInputValue < 0 || percentInputValue > 100) {
-      
-      return alert('ТЫ ЕБЛАН? Проценты бывают только от 0 до 100. ДАУН');
-   }    
-   
->>>>>>> 85b941e62167db7a12ac6cf90de22878bbde6435
    if (!isNaN(percentInputValue)) {
       var valueInt = parseInt(percentInputValue);
           valueFloat = percentInputValue - valueInt;
