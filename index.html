@@ -56,78 +56,23 @@
          <span class="values grey-text">значений слева от медианы <br> 52.0%-83.1% </span>
          <span class="difference">3.1</span>
          <div class="circles">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226 221.02">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226 221.02">
          <defs>
             <style class="circle-style">
-               .cls-1, .cls-2, .cls-3 {
-                  fill:none;
-                  stroke-linecap:round;
-                  stroke-dasharray: 604;
-                  stroke-dashoffset: 0;
-               }
-               .cls-1 {
-                  stroke:#ececec;
-                  stroke-linejoin:round;
-                  stroke-width:7px;
-                  animation: drawGrey 1s linear;
-               }
-               .cls-2 {
-                  
-                  stroke:#693;
-                  stroke-width:8px;
-                  
-               }
-               .cls-2, .cls-3 {
-                  stroke-miterlimit:10;
-                  stroke-dashoffset: 604;
-               }
-               .cls-3 {
-                  
-                  stroke:#fcd329;
-                  stroke-width:9px;
-                  
-               }
-
-               @keyframes drawGrey{
-                  from {
-                     stroke-dashoffset: 604;
-                  }
-                  to {
-                     stroke-dashoffset: 0;
-                  }
-               }
-
-               @keyframes drawGreen{
-                  from {
-                     stroke-dashoffset: 604;
-                  }
-                  to {
-                     stroke-dashoffset: 0;
-                  }
-               }
-
-               @keyframes drawYellow{
-                  from {
-                     stroke-dashoffset: 604;
-                  }
-                  to {
-                     stroke-dashoffset: 0;
-                  }
-               }
-         
             </style>
          </defs>
          <g id="Слой_2" data-name="Слой 2">
             <g id="Слой_4" data-name="Слой 4">
-               <path id="grey-circle" class="cls-1" d="M146.14,5.75A107.75,107.75,0,0,1,220.5,108c0,59-48.53,107.5-107.5,107.5S5.5,167,5.5,108A107.7,107.7,0,0,1,76.15,7"/>
+               <path id="circle-0" class="" d="M146.14,5.75A107.75,107.75,0,0,1,220.5,108c0,59-48.53,107.5-107.5,107.5S5.5,167,5.5,108A107.7,107.7,0,0,1,76.15,7"/>
                <!-- <animate id="grey-circle-animation" href="#grey-circle" attributeName="stroke-dashoffset"  from="604" to="0" dur="1s" fill="freeze"></animate> -->
-               <path id="green-circle" class="cls-2 active-green" d="M145.89,5.67A107.74,107.74,0,0,1,220.5,108c0,59-48.53,107.5-107.5,107.5S5.5,167,5.5,108a107.71,107.71,0,0,1,70-100.74"/>
+               <path id="circle-1" class="circle" d="M145.89,5.67A107.74,107.74,0,0,1,220.5,108c0,59-48.53,107.5-107.5,107.5S5.5,167,5.5,108a107.71,107.71,0,0,1,70-100.74"/>
                <!-- <animate id="green-circle-animation" href="#green-circle" attributeName="stroke-dashoffset"  from="604" to="175" dur="1s" fill="freeze"></animate> -->
-               <path id="yellow-circle" class="cls-3 active-yellow" d="M145.35,5.5A107.75,107.75,0,0,1,220.5,108c0,59-48.53,107.5-107.5,107.5S5.5,167,5.5,108A107.71,107.71,0,0,1,75.33,7.33"/>
+               <path id="circle-2" class="circle" d="M145.35,5.5A107.75,107.75,0,0,1,220.5,108c0,59-48.53,107.5-107.5,107.5S5.5,167,5.5,108A107.71,107.71,0,0,1,75.33,7.33"/>
+               <path id="circle-3" class="circle" d="M145.35,5.5A107.75,107.75,0,0,1,220.5,108c0,59-48.53,107.5-107.5,107.5S5.5,167,5.5,108A107.71,107.71,0,0,1,75.33,7.33"/>
                <!-- <animate id="yellow-circle-animation" href="#yellow-circle" attributeName="stroke-dashoffset"  from="604" to="368" dur="1s" fill="freeze"></animate> -->
             </g>
          </g>
-      </svg>
+         </svg>
          </div>
       </div>
 
@@ -137,7 +82,7 @@
                Промоутеры
             </div>
             <div class="stats-block-percent">
-               <div class="stats-block-percent-value" id="stats-value-1">32.0%</div>
+               <div class="stats-block-percent-value" id="stats-value-1">0%</div>
                <div class="stats-block-percent-people">
                   81
                   <svg width="18px" height='18px'  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.59 16.31">
@@ -162,32 +107,119 @@
             </div>
             <div class="stats-block-visual">
                <svg class="stats-block-visual-svg" width="135px" height='50px'>
-                  <defs>
-                     <style class="rect-style">
-                        
-                     </style>
-                  </defs>
-                  <rect x="0" y="0" class="new-percent" fill="#70A74B"></rect>
-                  <rect x="0" y="36px" height='14px' class="prev-percent" fill="#B5D0A2"></rect>
+                  <rect x="0" y="0" height='36px' class="new-percent__green" id="new-percent-1" fill="#70A74B"></rect>
+                  <rect x="0" y="36px" height='14px' class="prev-percent__green" id="prev-percent-1" fill="#B5D0A2"></rect>
                </svg>
-               <div class="stats-block-visual-difference">+1.2%</div>
+               <div class="stats-block-visual-difference" id="difference-1">+0%</div>
 
             </div>
          </div>
          <div class="stats-block">
-            <div class="stats-block-heading"></div>
-            <div class="stats-block-percent"></div>
-            <div class="stats-block-visual"></div>
+            <div class="stats-block-heading">
+               Скептики
+            </div>
+            <div class="stats-block-percent">
+               <div class="stats-block-percent-value" id="stats-value-2">0%</div>
+               <div class="stats-block-percent-people">
+                  81
+                  <svg width="18px" height='18px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.59 16.31">
+                     <defs>
+                        <style>
+                           .human {
+                              fill: #9999B3;
+                              width: 12px;
+                              height: 12px;
+                           }
+                        </style>
+                     </defs>
+                     <title>human_Ресурс 1</title>
+                     <g id="Слой_2" data-name="Слой 2">
+                        <g id="Layer_3" data-name="Layer 3">
+                           <path class="human"
+                              d="M15.11,12.71a1.82,1.82,0,0,0-1-1.29l-2.81-1.29h0l-1.16-.88h0a.8.8,0,0,0-.19-.38l0,0V7.44a7.55,7.55,0,0,0,.72-1.32,1.7,1.7,0,0,0,.77-1.32c0-.69-.21-.85-.42-.86C11,3.47,11.24,0,7.71,0,3.92,0,4.46,4,4.46,4h0c-.2,0-.42.17-.38.8a1.76,1.76,0,0,0,.76,1.32,9.32,9.32,0,0,0,.72,1.32V8.89a.78.78,0,0,0-.19.36l-1.16.87v.05L1.5,11.42a1.81,1.81,0,0,0-1,1.29L0,15.15s.46,1.16,7.8,1.16,7.79-1.16,7.79-1.16Z" />
+                        </g>
+                     </g>
+                  </svg>
+               </div>
+            </div>
+            <div class="stats-block-visual">
+               <svg class="stats-block-visual-svg" width="135px" height='50px'>
+                  <defs>
+                     <style class="rect-style">
+
+                     </style>
+                  </defs>
+                  <rect x="0" y="0" height='36px' class="new-percent__yellow" id="new-percent-2" fill="#FBD229"></rect>
+                  <rect x="0" y="36px" height='14px' class="prev-percent__yellow" id="prev-percent-2" fill="#FAE691"></rect>
+               </svg>
+               <div class="stats-block-visual-difference" id="difference-2">+0%</div>
+
+            </div>
          </div>
          <div class="stats-block">
-            <div class="stats-block-heading"></div>
-            <div class="stats-block-percent"></div>
-            <div class="stats-block-visual"></div>
+            <div class="stats-block-heading">
+               Критики
+            </div>
+            <div class="stats-block-percent">
+               <div class="stats-block-percent-value" id="stats-value-3">0%</div>
+               <div class="stats-block-percent-people">
+                  81
+                  <svg width="18px" height='18px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.59 16.31">
+                     <defs>
+                        <style>
+                           .human {
+                              fill: #9999B3;
+                              width: 12px;
+                              height: 12px;
+                           }
+                        </style>
+                     </defs>
+                     <title>human_Ресурс 1</title>
+                     <g id="Слой_2" data-name="Слой 2">
+                        <g id="Layer_3" data-name="Layer 3">
+                           <path class="human"
+                              d="M15.11,12.71a1.82,1.82,0,0,0-1-1.29l-2.81-1.29h0l-1.16-.88h0a.8.8,0,0,0-.19-.38l0,0V7.44a7.55,7.55,0,0,0,.72-1.32,1.7,1.7,0,0,0,.77-1.32c0-.69-.21-.85-.42-.86C11,3.47,11.24,0,7.71,0,3.92,0,4.46,4,4.46,4h0c-.2,0-.42.17-.38.8a1.76,1.76,0,0,0,.76,1.32,9.32,9.32,0,0,0,.72,1.32V8.89a.78.78,0,0,0-.19.36l-1.16.87v.05L1.5,11.42a1.81,1.81,0,0,0-1,1.29L0,15.15s.46,1.16,7.8,1.16,7.79-1.16,7.79-1.16Z" />
+                        </g>
+                     </g>
+                  </svg>
+               </div>
+            </div>
+            <div class="stats-block-visual">
+               <svg class="stats-block-visual-svg" width="135px" height='50px'>
+                  <defs>
+                     <style class="rect-style">
+
+                     </style>
+                  </defs>
+                  <rect x="0" y="0" height='36px' class="new-percent__red" id="new-percent-3" fill="#ED5243"></rect>
+                  <rect x="0" y="36px" height='14px' class="prev-percent__red" id="prev-percent-3" fill="#F3A69E"></rect>
+               </svg>
+               <div class="stats-block-visual-difference" id="difference-3">+0%</div>
+
+            </div>
          </div>
+         <style class="rect-style">
+            
+         </style>
       </div>
 
-      <input class="get-percent" type="text" placeholder="Введите число">
-      <button class="get-percent-btn" >Отправить</button>
+      <div class="inputs">
+         <label class="inputs-label green-label">
+            Зеленая статистика
+            <input class="percent-input green-input" id="percent-input-1" type="text" placeholder="Введите число">
+            <button class="percent-input-btn green-input-btn">Отправить</button>
+         </label>
+         <label class="inputs-label yellow-label">
+            Желтая статистика
+            <input class="percent-input yellow-input" id="percent-input-2" type="text" placeholder="Введите число">
+            <button class="percent-input-btn yellow-input-btn">Отправить</button>
+         </label>
+         <label class="inputs-label red-label">
+            Красная статистика
+            <input class="percent-input red-input" id="percent-input-3" type="text" placeholder="Введите число">
+            <button class="percent-input-btn red-input-btn">Отправить</button>
+         </label>
+      </div>
 
    </div>
 

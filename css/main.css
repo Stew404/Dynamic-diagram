@@ -122,6 +122,58 @@ body {
    height: 440px;
 }
 
+#circle-0,
+#circle-1,
+#circle-2,
+#circle-3 {
+   fill: none;
+   stroke-linecap: round;
+   stroke-dasharray: 604;
+   stroke-dashoffset: 0;
+}
+
+#circle-0 {
+   stroke: #ececec;
+   stroke-linejoin: round;
+   stroke-width: 7px;
+   animation: drawGrey 1s linear;
+}
+
+#circle-1 {
+
+   stroke: #693;
+   stroke-width: 8px;
+
+}
+
+#circle-1,
+#circle-2,
+#circle-3 {
+   stroke-miterlimit: 10;
+   stroke-dashoffset: 604;
+}
+
+#circle-2 {
+
+   stroke: #fcd329;
+   stroke-width: 9px;
+}
+
+#circle-3 {
+   stroke: #ED5243;
+   stroke-width: 10px;
+}
+
+@keyframes drawGrey {
+   from {
+      stroke-dashoffset: 604;
+   }
+
+   to {
+      stroke-dashoffset: 0;
+   }
+}
+
 .video-fortnite-wrapper {
    display: none;
 
@@ -136,21 +188,41 @@ body {
    overflow: hidden;
 }
 
-.get-percent {
+.inputs {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+
+   top: 50%;
+   right: 10%;
+
+   transform: translateY(-50%);
+}
+
+.inputs-label {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   font-size: 28px;
+
+   margin: 10px 0;
+}
+
+.percent-input {
    width: 300px;
    height: 40px;
 
    padding: 5px 10px;
-   margin-top: 100px;
-
    border: 1px solid #585858;
-   
+   margin: 5px 0;
    border-radius: 20px;
 
    font-size: 34px;
 }
 
-.get-percent-btn {
+.percent-input-btn {
 
    display: flex;
    justify-content: center;
@@ -163,12 +235,11 @@ body {
    border-radius: 20px;
 
    padding-top: 3px;
-   margin-top: 5px;
    width: 170px;
    height: 40px;
 }
 
-.get-percent-btn:hover {
+.green-input-btn:hover {
    background-color: #767676;
    color: #cccccc;
 
@@ -249,14 +320,15 @@ body {
 /* Stats block */
 
 .stats {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
+   display: grid;
+   grid-template-rows: repeat(3, 1fr);
 }
 
 .stats-block {
-   display: flex;
-   align-items: start;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+
+   margin: 5px 0;
 }
 
 .stats-block-heading {
@@ -268,6 +340,8 @@ body {
    display: flex;
    flex-direction: column;
    align-items: end;
+
+   padding-right: 40px;
    margin: 0 10px;
 }
 
@@ -296,9 +370,6 @@ body {
    border-radius: 4px;
 }
 
-.new-percent {
-   height: 36px;
-}
 
 .stats-block-visual-difference {
    font-size: 18px;

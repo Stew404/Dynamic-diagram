@@ -1,103 +1,63 @@
 
-const percentInput = document.querySelector('.get-percent');
-      percentInputBtn = document.querySelector('.get-percent-btn');
+const percentInput = document.querySelectorAll('.percent-input');
+      percentInputBtn = document.querySelectorAll('.percent-input-btn');
       percentCls = document.querySelector('.percent');
       percentFloat = document.querySelector('.float');
-      greenCircle = document.querySelector('#green-circle');
-      yellowCircle = document.querySelector('#yellow-circle');
       circleStyle = document.querySelector('.circle-style');
-      gorinWrapper = document.querySelector('.video-gorin-wrapper');
-      gorinVideo = document.querySelector('.video-gorin');
-      fortniteWrapper = document.querySelector('.video-fortnite-wrapper');
-      fortniteVideo = document.querySelector('.video-fortnite');
-      fortniteGradient = document.querySelector('.fortnite-gradient');
-      flagImg = document.querySelector('.flag-img');
-      statsBlockPercentValue = document.querySelector('.stats-block-percent-value');
-      statsBlockNewPercent = document.querySelector('.new-percent');
-      statsBlockPrevPercent = document.querySelector('.prev-percent');
+      circle = document.querySelectorAll('.circle');
       rectStyle = document.querySelector('.rect-style');
-      statsBlockVisualDifference = document.querySelector('.stats-block-visual-difference');
 
 
 var circleLength = 604;
-    startPositiong = circleLength;
-    startPositiony = circleLength;
+    startPosition = circleLength;
 
 
 
-// percentInputBtn.addEventListener('click', () => {
-//       percent.innerHTML = valueInt + "<span class=\"float\">" + valueFloat + "</span>";
 
-//       circleStyle.innerHTML=`
-//       .cls-1, .cls-2, .cls-3 {
-//                   fill:none;
-//                   stroke-linecap:round;
-//                   stroke-dasharray: 604;
-//                   stroke-dashoffset: 0;
-//                }
-//                .cls-1 {
-//                   stroke:#ececec;
-//                   stroke-linejoin:round;
-//                   stroke-width:7px;
-//                   animation: drawGrey 1s linear;
-//                }
-//                .cls-2 {
-                  
-//                   stroke:#693;
-//                   stroke-width:8px;
-                  
-//                }
-//                .cls-2, .cls-3 {
-//                   stroke-miterlimit:10;
-//                   stroke-dashoffset: 604;
-//                }
-//                .cls-3 {
-                  
-//                   stroke:#fcd329;
-//                   stroke-width:9px;
-//                }
 
-//                .active-green {
-//                   animation: drawGreen 1s linear;
-//                }
+var prevPercentArr = [];
+    startPositionArr = [];
 
-//                .active-yellow {
-//                   animation: drawYellow 1s linear;
-//                }
-//       `;
-      
-//       setTimeout(updateCircles, 0, percentInputValue*0.01);
-      
-//    } 
-//    else {
-//      alert('Вводить можно только числа')
-//    }
+percentInput.forEach(function readInput(input, index) {
 
-   
+   prevPercentArr.push(0);
+   startPositionArr.push(604);
 
-// })
+   percentInputBtn[index].addEventListener('click', () => {
+    var inputValue = parseFloat(input.value);
+       inputId = input.getAttribute('id');
+       inputId = inputId.match(/\d/g);
 
-    
-    var prevPercent = 0;
-      greenPercent ="";
-      valueInt ="";
-      valueFloat ="";
-      mainPercent = 0;
+       drawRect(inputValue, inputId);
 
-percentInputBtn.addEventListener('click', () => {
-   var percentInputValue = parseFloat(percentInput.value);
+      var percentSum = 0;
 
-   greenRect(percentInputValue);
+       prevPercentArr.forEach(function sumElem(elem) {
+          percentSum += elem;
+       })
+     
 
-   updateCircles(greenPercent);
+
+       updateCircles(percentSum, prevPercentArr);
+});
 });
 
-function greenRect(percentInputValue) {
-   var newPercent = percentInputValue;
-      greenPercent = percentInputValue*0.01;
+
+function drawRect(InputValue, inputId) {
+   var newPercent = InputValue;
+       prevPercent = prevPercentArr[inputId-1];
+      percentMultiplier = InputValue*0.01;
       percentDifference = newPercent - prevPercent;
 
-   valuesArr = FloatSlicer(percentInputValue); 
+      percentDifference = percentDifference.toFixed(1);
+      
+
+   valuesArr = FloatSlicer(InputValue); 
+
+   var statsBlockPercentValue = document.querySelector('#stats-value-' + inputId );
+       statsBlockVisualDifference = document.querySelector('#difference-' + inputId );
+       newPercentElem = document.querySelector('#new-percent-' + inputId );
+       prevPercentElem = document.querySelector('#prev-percent-' + inputId );
 
    statsBlockPercentValue.innerHTML = valuesArr[0] + "." + valuesArr[1] + "%";
 
@@ -107,18 +67,9 @@ function greenRect(percentInputValue) {
    else {
       statsBlockVisualDifference.innerHTML = percentDifference + "%"
    }
-   
-   rectStyle.innerHTML= `
-   .new-percent {
-      width: `+ newPercent +`%;
-      animation: DrawGreenRect 1s;
-   }
-   .prev-percent {
-      width: `+ prevPercent +`%;
-      animation: DrawGreenSubRect 1s;
-   }
 
-   @keyframes DrawGreenRect {
+   rectStyle.innerHTML= `
+   @keyframes DrawRect {
       0% {
          width: 0;
       }
@@ -128,7 +79,7 @@ function greenRect(percentInputValue) {
       }
    }
 
-   @keyframes DrawGreenSubRect {
+   @keyframes DrawSubRect {
       0% {
          width: 0;
       }
@@ -138,10 +89,17 @@ function greenRect(percentInputValue) {
       }
    }
    `;
-   prevPercent = newPercent;
+
+   newPercentElem.style.width=newPercent+"%";
+   newPercentElem.style.animation="DrawRect 1s";
+
+   prevPercentElem.style.width=prevPercent+"%";
+   prevPercentElem.style.animation="DrawSubRect 1s";
+
+   prevPercentArr[inputId-1] = newPercent; 
 }
 
-function gloatSlicer(inputValue) {
+function FloatSlicer(inputValue) {
    var valueInt = parseInt(inputValue);
       valueFloat = inputValue - valueInt;
       valueFloat = valueFloat.toFixed(1);
@@ -155,89 +113,47 @@ function gloatSlicer(inputValue) {
    return arr;
 }
 
-function updateCircles(percent) {
+function updateCircles(percent, percentArr) {
 
-       valuesArr = FloatSlicer(percent*100); 
+       valuesArr = FloatSlicer(percent); 
        percentCls.innerHTML = valuesArr[0] + "<span class=\"float\">" + valuesArr[1] + "</span>";
 
-       var percentLast = percent;
-         animationDuration = percent.toFixed(1);
 
-       if (Math.abs(percentLast-percent) < 0.4) {
+       var percentMultiplier = percent*0.01;
+           percentLast = percentMultiplier;
+           animationDuration = percentMultiplier.toFixed(1);
+
+       if (Math.abs(percentLast-percentMultiplier) < 0.4) {
           animationDuration = 0.4;
        }
 
-         endPositiong = circleLength - (circleLength * percent);
-         endPositiony = 604;
+         
 
-       circleStyle.innerHTML = `
-               .cls-1, .cls-2, .cls-3 {
-                  fill:none;
-                  stroke-linecap:round;
-                  stroke-dasharray: 604;
-                  stroke-dashoffset: 0;
-               }
-               .cls-1 {
-                  stroke:#ececec;
-                  stroke-linejoin:round;
-                  stroke-width:7px;
-                  animation: drawGrey 1s linear;
-               }
-               .cls-2 {
-                  
-                  stroke:#693;
-                  stroke-width:8px;
-                  
-               }
-               .cls-2, .cls-3 {
-                  stroke-miterlimit:10;
-               }
-               .cls-3 {
-                  
-                  stroke:#fcd329;
-                  stroke-width:9px;
-               }
+       percentArr.forEach(function drawCircle(elem, index){
+          elem *= 0.01;
 
-               .active-green {
-                  animation: drawGreen `+ animationDuration +`s ease-out;
-                  stroke-dashoffset: `+ endPositiong +`;
-               }
+          endPosition = circleLength - (circleLength * elem);
+          
+          var thisCircle = circle[index];
 
-               .active-yellow {
-                  animation: drawYellow `+ animationDuration +`s ease-out;
-                  stroke-dashoffset: `+ endPositiony +`;
-                  }
-               }
-
-               @keyframes drawGrey{
+          circleStyle.innerHTML = `
+               @keyframes drawCircle{
                   from {
-                     stroke-dashoffset: 604;
+                     stroke-dashoffset: `+ startPositionArr[index] +`;
                   }
                   to {
-                     stroke-dashoffset: 0;
-                  }
-               }
-
-               @keyframes drawGreen{
-                  from {
-                     stroke-dashoffset: `+ startPositiong +`;
-                  }
-                  to {
-                     stroke-dashoffset: `+ endPositiong +`;
-                  }
-               }
-
-               @keyframes drawYellow{
-                  from {
-                     stroke-dashoffset: `+ startPositiony +`;
-                  }
-                  to {
-                     stroke-dashoffset: `+ endPositiony +`;
+                     stroke-dashoffset: `+ endPosition +`;
                   }
                }
          `;
-           startPositiong = endPositiong;
-           startPositiony = endPositiony;
+
+          thisCircle.style.animation = "drawCircle " + animationDuration + "s";
+          thisCircle.style.strokeDashoffset = endPosition;
+
+          startPositionArr[index] = endPosition;
+          
+       })
+
 }
 
 
