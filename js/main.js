@@ -17,6 +17,7 @@ var circleLength = 604;
 
 var prevPercentArr = [];
     startPositionArr = [];
+    endPositionArr =[];
 
 percentInput.forEach(function readInput(input, index) {
 
@@ -127,14 +128,22 @@ function updateCircles(percent, percentArr) {
           animationDuration = 0.4;
        }
 
-         
+       for(let i=percentArr.length-1; i > 0 ; i--){
+          percentArr[i-1] += percentArr[i];
+       }
+      //  percentArr[1] += percentArr[2];
+      //  percentArr[0] += percentArr[1];
 
-       percentArr.forEach(function drawCircle(elem, index){
+       percentArr.forEach(function drawCircle(elem, index, percentArr){
           elem *= 0.01;
+          var invertIndex = percentArr.length - (index+1);
 
-          endPosition = circleLength - (circleLength * elem);
+          endPositionArr[index] = circleLength - (circleLength * elem);
+          
+
           
           var thisCircle = circle[index];
+            
 
           circleStyle.innerHTML = `
                @keyframes drawCircle{
@@ -142,17 +151,25 @@ function updateCircles(percent, percentArr) {
                      stroke-dashoffset: `+ startPositionArr[index] +`;
                   }
                   to {
-                     stroke-dashoffset: `+ endPosition +`;
+                     stroke-dashoffset: `+ endPositionArr[index] +`;
                   }
                }
          `;
 
           thisCircle.style.animation = "drawCircle " + animationDuration + "s";
-          thisCircle.style.strokeDashoffset = endPosition;
+          thisCircle.style.strokeDashoffset = endPositionArr[index];
 
-          startPositionArr[index] = endPosition;
+
+          startPositionArr[index] = endPositionArr[index];
           
        })
+
+       for(let i=0; i < percentArr.length-1; i++){
+          percentArr[i] -= percentArr[i+1];
+       }
+
+      //  percentArr[0] -= percentArr[1];
+      //  percentArr[1] -= percentArr[2];
 
 }
 
