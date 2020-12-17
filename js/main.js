@@ -16,13 +16,17 @@ var circleLength = 604;
 
 
 var prevPercentArr = [];
+    prevPrevPercentArr = [];
     startPositionArr = [];
     endPositionArr =[];
+    animationDurationArr =[];
 
 percentInput.forEach(function readInput(input, index) {
 
    prevPercentArr.push(0);
+   prevPrevPercentArr.push(0);
    startPositionArr.push(604);
+   animationDurationArr.push(0);
 
    percentInputBtn[index].addEventListener('click', () => {
     var inputValue = parseFloat(input.value);
@@ -36,9 +40,7 @@ percentInput.forEach(function readInput(input, index) {
        prevPercentArr.forEach(function sumElem(elem) {
           percentSum += elem;
        })
-     
-
-
+      
        updateCircles(percentSum, prevPercentArr);
 });
 });
@@ -47,6 +49,7 @@ percentInput.forEach(function readInput(input, index) {
 function drawRect(InputValue, inputId) {
    var newPercent = InputValue;
        prevPercent = prevPercentArr[inputId-1];
+       prevPrevPercent = prevPrevPercentArr [inputId-1];
       percentMultiplier = InputValue*0.01;
       percentDifference = newPercent - prevPercent;
 
@@ -72,7 +75,7 @@ function drawRect(InputValue, inputId) {
    rectStyle.innerHTML= `
    @keyframes DrawRect {
       0% {
-         width: 0;
+         width: `+ prevPercent +`%;
       }
 
       100% {
@@ -82,7 +85,7 @@ function drawRect(InputValue, inputId) {
 
    @keyframes DrawSubRect {
       0% {
-         width: 0;
+         width: `+ prevPrevPercent +`%;
       }
 
       100% {
@@ -97,7 +100,13 @@ function drawRect(InputValue, inputId) {
    prevPercentElem.style.width=prevPercent+"%";
    prevPercentElem.style.animation="DrawSubRect 1s";
 
+   prevPrevPercentArr [inputId-1] = prevPercent;
    prevPercentArr[inputId-1] = newPercent; 
+   setTimeout(() => {
+      rectStyle.innerHTML = ``;
+      newPercentElem.style.animation="";
+      prevPercentElem.style.animation="";
+   }, 1001);
 }
 
 function FloatSlicer(inputValue) {
@@ -120,56 +129,70 @@ function updateCircles(percent, percentArr) {
        percentCls.innerHTML = valuesArr[0] + "<span class=\"float\">" + valuesArr[1] + "</span>";
 
 
-       var percentMultiplier = percent*0.01;
-           percentLast = percentMultiplier;
-           animationDuration = percentMultiplier.toFixed(1);
-
-       if (Math.abs(percentLast-percentMultiplier) < 0.4) {
-          animationDuration = 0.4;
-       }
+       
 
        for(let i=percentArr.length-1; i > 0 ; i--){
           percentArr[i-1] += percentArr[i];
        }
-      //  percentArr[1] += percentArr[2];
-      //  percentArr[0] += percentArr[1];
 
        percentArr.forEach(function drawCircle(elem, index, percentArr){
           elem *= 0.01;
-          var invertIndex = percentArr.length - (index+1);
+
+         var thisCircle = circle[index];
+
+
 
           endPositionArr[index] = circleLength - (circleLength * elem);
+          endPositionArr[index] = endPositionArr[index].toFixed(0);
+          
+         var percentMultiplier = elem;
+           percentLast = percentMultiplier;
+           animationDuration = 1-percentMultiplier.toFixed(1);
+
+       var animParam = parseInt(startPositionArr[index]);
+
+       if (endPositionArr[index]-startPositionArr[index] < 0){
+
+          let drawAnimationPlus = setInterval(() => {
+
+          if (animParam <= endPositionArr[index]) {
+             clearInterval(drawAnimationPlus);
+             thisCircle.style.strokeDashoffset = endPositionArr[index];
+             startPositionArr[index] = endPositionArr[index];
+             return;
+          }
+
+          animParam -= 3;
+
+
+          thisCircle.style.strokeDashoffset = animParam;
+       }, 4);
+
+       } 
+       else if (endPositionArr[index]-startPositionArr[index] > 0){
+          let drawAnimationMinus = setInterval(() => {
+
+          if (animParam >= endPositionArr[index]) {
+             clearInterval(drawAnimationMinus);
+             thisCircle.style.strokeDashoffset = endPositionArr[index];
+             startPositionArr[index] = endPositionArr[index];
+             return;
+          }
+
+          animParam += 3;
+
           
 
-          
-          var thisCircle = circle[index];
-            
+          thisCircle.style.strokeDashoffset = animParam;
+       }, 4);
+       }
 
-          circleStyle.innerHTML = `
-               @keyframes drawCircle{
-                  from {
-                     stroke-dashoffset: `+ startPositionArr[index] +`;
-                  }
-                  to {
-                     stroke-dashoffset: `+ endPositionArr[index] +`;
-                  }
-               }
-         `;
-
-          thisCircle.style.animation = "drawCircle " + animationDuration + "s";
-          thisCircle.style.strokeDashoffset = endPositionArr[index];
-
-
-          startPositionArr[index] = endPositionArr[index];
-          
        })
 
        for(let i=0; i < percentArr.length-1; i++){
           percentArr[i] -= percentArr[i+1];
        }
 
-      //  percentArr[0] -= percentArr[1];
-      //  percentArr[1] -= percentArr[2];
 
 }
 
