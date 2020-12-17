@@ -8,14 +8,13 @@ const percentInput = document.querySelectorAll('.percent-input');
       rectStyle = document.querySelector('.rect-style');
 
 
-var circleLength = 604;
-    startPosition = circleLength;
+let circleLength = 604;
 
 
 
 
 
-var prevPercentArr = [];
+let prevPercentArr = [];
     prevPrevPercentArr = [];
     startPositionArr = [];
     endPositionArr =[];
@@ -29,13 +28,13 @@ percentInput.forEach(function readInput(input, index) {
    animationDurationArr.push(0);
 
    percentInputBtn[index].addEventListener('click', () => {
-    var inputValue = parseFloat(input.value);
+    let inputValue = parseFloat(input.value);
        inputId = input.getAttribute('id');
        inputId = inputId.match(/\d/g);
 
        drawRect(inputValue, inputId);
 
-      var percentSum = 0;
+      let percentSum = 0;
 
        prevPercentArr.forEach(function sumElem(elem) {
           percentSum += elem;
@@ -47,7 +46,7 @@ percentInput.forEach(function readInput(input, index) {
 
 
 function drawRect(InputValue, inputId) {
-   var newPercent = InputValue;
+   let newPercent = InputValue;
        prevPercent = prevPercentArr[inputId-1];
        prevPrevPercent = prevPrevPercentArr [inputId-1];
       percentMultiplier = InputValue*0.01;
@@ -58,7 +57,7 @@ function drawRect(InputValue, inputId) {
 
    valuesArr = FloatSlicer(InputValue); 
 
-   var statsBlockPercentValue = document.querySelector('#stats-value-' + inputId );
+   let statsBlockPercentValue = document.querySelector('#stats-value-' + inputId );
        statsBlockVisualDifference = document.querySelector('#difference-' + inputId );
        newPercentElem = document.querySelector('#new-percent-' + inputId );
        prevPercentElem = document.querySelector('#prev-percent-' + inputId );
@@ -109,20 +108,6 @@ function drawRect(InputValue, inputId) {
    }, 1001);
 }
 
-function FloatSlicer(inputValue) {
-   var valueInt = parseInt(inputValue);
-      valueFloat = inputValue - valueInt;
-      valueFloat = valueFloat.toFixed(1);
-      valueFloat *= 10;
-
-
-      if (valueFloat == 10) {
-         valueFloat = 9;
-      }
-      let arr = [valueInt, valueFloat];
-   return arr;
-}
-
 function updateCircles(percent, percentArr) {
 
        valuesArr = FloatSlicer(percent); 
@@ -138,18 +123,18 @@ function updateCircles(percent, percentArr) {
        percentArr.forEach(function drawCircle(elem, index, percentArr){
           elem *= 0.01;
 
-         var thisCircle = circle[index];
+         let thisCircle = circle[index];
 
 
 
           endPositionArr[index] = circleLength - (circleLength * elem);
           endPositionArr[index] = endPositionArr[index].toFixed(0);
           
-         var percentMultiplier = elem;
+         let percentMultiplier = elem;
            percentLast = percentMultiplier;
            animationDuration = 1-percentMultiplier.toFixed(1);
 
-       var animParam = parseInt(startPositionArr[index]);
+       let animParam = parseInt(startPositionArr[index]);
 
        if (endPositionArr[index]-startPositionArr[index] < 0){
 
@@ -195,6 +180,22 @@ function updateCircles(percent, percentArr) {
 
 
 }
+
+function FloatSlicer(inputValue) {
+   let valueInt = parseInt(inputValue);
+      valueFloat = inputValue - valueInt;
+      valueFloat = valueFloat.toFixed(1);
+      valueFloat *= 10;
+
+
+      if (valueFloat == 10) {
+         valueFloat = 9;
+      }
+      let arr = [valueInt, valueFloat];
+   return arr;
+}
+
+
 
 
 
